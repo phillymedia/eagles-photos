@@ -1,0 +1,107 @@
+@import 'philly-styles/values'; // .photogrid {
+//     position: absolute;
+//     top: 90px;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     z-index: 0;
+//     display: grid;
+//     grid-template-columns: repeat(4, 1fr);
+//     grid-template-rows: repeat(3, 30%);
+//     grid-gap: 5px;
+//     align-content: center;
+//
+//     &::after {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         background: rgba(black,0.6);
+//         z-index: 11;
+//         content: "";
+//         background: -moz-radial-gradient(center, ellipse cover, rgba(black,0.65) 0%, rgba(black,0) 100%);
+//         background: -webkit-radial-gradient(center, ellipse cover, rgba(black,0.65) 0%,rgba(black,0) 100%);
+//         background: radial-gradient(circle at 45% 45%, rgba(black,0.75) 40%,rgba(black,0) 100%);
+//     }
+// }
+
+.photogrid {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    @include display-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    @include tablet {
+        align-content: center;
+    };
+    @include mobile {
+        align-content: space-around;
+    };
+    @include BS-large {
+        align-content: center;
+    };
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(black,0.6);
+        z-index: 11;
+        content: "";
+        background: -moz-radial-gradient(center, ellipse cover, rgba(black,0.65) 0%, rgba(black,0) 100%);
+        background: -webkit-radial-gradient(center, ellipse cover, rgba(black,0.65) 0%,rgba(black,0) 100%);
+        background: radial-gradient(circle at 45% 45%, rgba(black,0.75) 40%,rgba(black,0) 100%);
+    }
+}
+
+.phototest {
+    margin: 5px;
+    max-height: 30%;
+    @include flex(1 1 20%);
+    @include display-flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 0 100px 10px rgba(black,0.9);
+        border: 5px solid black;
+    };
+    @include tablet {
+        @include flex(1 1 35%);
+    };
+}
+@include keyframes(animateIn) {
+    0% {
+        opacity: 0;
+        // @include transform(scale(.8));
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@for $i from 1 through 13 {
+    .phototest:nth-child(#{$i}) {
+        @include transform(scale(random(102)*0.01+0.60));
+        z-index: random(10);
+        opacity: 0;
+        @include animation(animateIn 5s ease random(4000) + ms forwards);
+    }
+}
+@for $i from 7 through 13 {
+    @include tablet {
+        .phototest:nth-child(#{$i}) {
+            display: none;
+        }
+    };
+}

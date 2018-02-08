@@ -1,0 +1,30 @@
+{% extends "pagetemplate.html" %}
+
+{% block styles %}
+    <!--removeIf(production)-->
+    <!--build:css min-files/styles.min.css-->
+    <link rel="stylesheet" href="css/styles.css">
+    <!--endbuild-->
+    <!--endRemoveIf(production)-->
+{% endblock %}
+{% block bodycontent %}
+    {#
+<div class="flexRow rowSpacing">
+    <div class="flexSpacer"></div>
+    <div class="flexContent">
+        Photos go in here
+    </div>
+    <div class="flexSpacer"></div>
+</div> #}
+    <div class="startphotos">
+        {% include "phototemplate.html" %}
+    </div>
+
+{% endblock %}
+{% block jsfile %}
+    <!--removeIf(production)-->
+    <!--build:js min-files/main.min.js -->
+    <script src="js/main.js"></script>
+    <!-- endbuild -->
+    <!--endRemoveIf(production)-->
+{% endblock %}

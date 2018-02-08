@@ -1,0 +1,137 @@
+{% for key, photos in data %}
+    {% if photos.length > 1 %}
+
+        <div class="photoRow photoGallery {% if photos[0].photo_context %}{% else %}photospacer{% endif %}" id='{{key|replace(".JPG", "")|replace(".jpg","")}}'>
+            <div class="flexContent fullSize">
+                {% for photo in photos %}
+                    {% if loop.first %}
+                        <div class="imagewrapper lazyload">
+                            <img src="http://media.philly.com/storage/inquirer/special%20project%20media/POYProc/{{photo.photo_url}}?fsdfa" alt="">
+                            <div class="seemore prev noNext">
+                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+
+                            </div>
+
+                            <div class="seemore next galleryPreview">
+                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                <div class="seemoretext">More photos</div>
+                            </div>
+                        </div>
+
+                        <div class="galleryphoto active" photo-src="{{photo.photo_url}}?sdfds" photo-caption="{{photo.photo_caption}}" photo-credit="{{photo.photo_credit}}"></div>
+                    {% else %}
+                        <div class="galleryphoto" photo-src="{{photo.photo_url}}?sdfds" photo-caption="{{photo.photo_caption}}" photo-credit="{{photo.photo_credit}}"></div>
+                    {% endif %}
+
+                {% endfor %}
+
+                <div class="textwrapper">
+                    <div class="caption">
+                        {{photos[0].photo_caption}}
+                    </div>
+                    <div class="credit">
+                        {{photos[0].photo_credit}}
+                    </div>
+
+                    {# <div class="d-sharetools" ><ul class="sharetools-menu"><li class="sharetool facebook-sharetool"><a href="javascript:;" data-share="facebook" data-modal-title=""><i class="icon sprite-icon"></i><span class="sharetool-text ">Share</span></a></li><li class="sharetool twitter-sharetool"><a href="javascript:;" data-share="twitter" data-modal-title=""><i class="icon sprite-icon"></i><span class="sharetool-text ">Tweet</span></a></li></ul></div> #}
+
+                    {# <div
+                        class="shareSection"
+                        data-shares="facebook,twitter"
+                        data-url='http://localhost:3000/news.html#{{key|replace(".JPG", "")|replace(".jpg","")}}'
+                        data-title="This is a test title"
+                        data-media="https://static01.nyt.com/images/2016/12/25/sunday-review/YIP2016-January-slide-H3BQ/YIP2016-January-slide-H3BQ-superJumbo.jpg"
+                        data-share-tools-initialized="1">
+                        <div class="shareicon twittershare">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="146 290 500 500" enable-background="new 146 290 500 500"><path
+                                fill="#fff"
+                                d="M389.9 458.5l.9 15-15.2-1.8c-55.4-7.1-103.8-31.1-145-71.3l-20.1-20-5.2 14.7c-11 32.9-4 67.7 18.9 91 12.1 12.9 9.4 14.8-11.6 7.1-7.3-2.4-13.7-4.3-14.3-3.4-2.1 2.2 5.2 30.1 11 41.2 7.9 15.4 24.1 30.4 41.8 39.4l14.9 7-17.7.3c-17.1 0-17.7.3-15.8 6.8 6.1 20 30.2 41.2 57 50.4l18.9 6.4-16.5 9.8c-24.4 14.1-53 22.1-81.6 22.7-13.7.3-25 1.5-25 2.5 0 3.1 37.2 20.3 58.8 27.1 64.9 20 141.9 11.4 199.8-22.8 41.1-24.3 82.2-72.6 101.4-119.3 10.3-24.9 20.7-70.4 20.7-92.2 0-14.1.9-16 18-32.9 10.1-9.8 19.5-20.6 21.3-23.7 3-5.8 2.7-5.8-12.8-.6-25.9 9.2-29.6 8-16.8-5.8 9.5-9.9 20.7-27.7 20.7-32.9 0-.9-4.6.6-9.7 3.4-5.5 3.1-17.7 7.7-26.8 10.5l-16.5 5.2-14.9-10.2c-8.2-5.5-19.8-11.7-25.9-13.5-15.5-4.3-39.3-3.7-53.3 1.2-38.1 14-62.1 49.6-59.4 88.7z"/></svg>
+
+                        </div>
+                        <div class="shareicon facebookshare">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="146 290 500 500" enable-background="new 146 290 500 500"><path fill="#fff" d="M435.9 758V547h57.3l7.5-72.7h-64.8l.1-36.4c0-19 1.8-29.2 28.6-29.2h35.8V336H443c-68.9 0-93.1 35.3-93.1 94.6v43.6H307V547h43v211h85.9z"/></svg>
+
+                        </div>
+                    </div> #}
+
+                </div>
+            </div>
+
+        </div>
+
+        {% if photos[0].photo_context %}
+            <div class="flexRow photospacer">
+                <div class="flexSpacer"></div>
+                <div class="flexContent">
+                    <div class="photoDescription">
+                        {{photos[0].photo_context|safe}}
+                    </div>
+                </div>
+                <div class="flexSpacer"></div>
+            </div>
+        {% endif %}
+
+    {% else %}
+        <div class="photoRow {% if photos.photo_context %}{% else %}photospacer{% endif %}" id='{{key|replace(".JPG", "")|replace(".jpg","")}}'>
+            <div class="flexContent fullSize">
+                <div class="imagewrapper lazyload">
+                    <img src="http://media.philly.com/storage/inquirer/special%20project%20media/POYProc/{{photos.photo_url}}?sdfdfa" alt="">
+                </div>
+                <div class="textwrapper">
+                    <div class="caption">
+                        {{photos.photo_caption}}
+                    </div>
+                    <div class="credit">
+                        {{photos.photo_credit}}
+                    </div>
+
+                    {# <div class="d-sharetools" ><ul class="sharetools-menu"><li class="sharetool facebook-sharetool"><a href="javascript:;" data-share="facebook" data-modal-title=""><i class="icon sprite-icon"></i><span class="sharetool-text ">Share</span></a></li><li class="sharetool twitter-sharetool"><a href="javascript:;" data-share="twitter" data-modal-title=""><i class="icon sprite-icon"></i><span class="sharetool-text ">Tweet</span></a></li></ul></div> #}
+
+                    {# <div
+                        class="shareSection"
+                        data-shares="facebook,twitter"
+                        data-url='http://localhost:3000/news.html#{{key|replace(".JPG", "")|replace(".jpg","")}}'
+                        data-title="This is a test title"
+                        data-media="https://static01.nyt.com/images/2016/12/25/sunday-review/YIP2016-January-slide-H3BQ/YIP2016-January-slide-H3BQ-superJumbo.jpg"
+                        data-share-tools-initialized="1">
+                        <div class="shareicon twittershare">
+                            <a href="" data-share="twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="146 290 500 500" enable-background="new 146 290 500 500"><path
+                                    fill="#fff"
+                                    d="M389.9 458.5l.9 15-15.2-1.8c-55.4-7.1-103.8-31.1-145-71.3l-20.1-20-5.2 14.7c-11 32.9-4 67.7 18.9 91 12.1 12.9 9.4 14.8-11.6 7.1-7.3-2.4-13.7-4.3-14.3-3.4-2.1 2.2 5.2 30.1 11 41.2 7.9 15.4 24.1 30.4 41.8 39.4l14.9 7-17.7.3c-17.1 0-17.7.3-15.8 6.8 6.1 20 30.2 41.2 57 50.4l18.9 6.4-16.5 9.8c-24.4 14.1-53 22.1-81.6 22.7-13.7.3-25 1.5-25 2.5 0 3.1 37.2 20.3 58.8 27.1 64.9 20 141.9 11.4 199.8-22.8 41.1-24.3 82.2-72.6 101.4-119.3 10.3-24.9 20.7-70.4 20.7-92.2 0-14.1.9-16 18-32.9 10.1-9.8 19.5-20.6 21.3-23.7 3-5.8 2.7-5.8-12.8-.6-25.9 9.2-29.6 8-16.8-5.8 9.5-9.9 20.7-27.7 20.7-32.9 0-.9-4.6.6-9.7 3.4-5.5 3.1-17.7 7.7-26.8 10.5l-16.5 5.2-14.9-10.2c-8.2-5.5-19.8-11.7-25.9-13.5-15.5-4.3-39.3-3.7-53.3 1.2-38.1 14-62.1 49.6-59.4 88.7z"/></svg>
+                            </a>
+                        </div>
+                        <div class="shareicon facebookshare">
+                            <a href="" data-share="facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="146 290 500 500" enable-background="new 146 290 500 500"><path fill="#fff" d="M435.9 758V547h57.3l7.5-72.7h-64.8l.1-36.4c0-19 1.8-29.2 28.6-29.2h35.8V336H443c-68.9 0-93.1 35.3-93.1 94.6v43.6H307V547h43v211h85.9z"/></svg>
+                            </a>
+
+                        </div>
+                    </div> #}
+                </div>
+            </div>
+        </div>
+
+        {% if photos.photo_context %}
+        <div class="flexRow photospacer">
+            <div class="flexSpacer"></div>
+            <div class="flexContent">
+                <div class="photoDescription">
+                    <!-- <div class="lens">
+                        Behind the lens:
+                    </div> -->
+                    {{photos.photo_context|safe}}
+                </div>
+            </div>
+            <div class="flexSpacer"></div>
+        </div>
+
+        {% endif %}
+
+
+
+    {% endif %}
+
+{% endfor %}

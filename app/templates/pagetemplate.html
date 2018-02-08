@@ -1,0 +1,87 @@
+{% include "partials/shell/head.html" %}
+{% block styles %}{% endblock %}
+<div class="backgroundColor">
+
+    <div alignment="true" class="headerIntroNoImage">
+        <div alignment="true" class="headerSectionNoImage">
+            <h1 alignment="true" class="overlayText">{{data.galleryhead}}</h1>
+            <div class="subhead">
+                After the Eagles huge Super Bowl win, fans gather in celebration.
+            </div>
+            <div alignment="true" class="headDisplay">
+                <div alignment="true" class="custom-social-share">&nbsp;</div>
+                <div alignment="true" class="dateline">{{data.gallerydate}}</div>
+            </div>
+        </div>
+
+    </div>
+    {# <div class="byline">
+        From the photographers of The Philadelphia Inquirer, Daily News and Philly.com
+    </div> #}
+
+    <div class="startphotos">
+        <a href="http://www.philly.com/philly/super-bowl-lii/eagles-parade-philadelphia-super-bowl-live-updates-20180208.html">Eagles parade: Recapping Philadelphia's Super Bowl celebration <i class="fas fa-angle-right">&zwj;</i></a>
+
+
+        {% for item in data.photo %}
+
+            <div class="photoRow {% if item.photo_context %}{% else %}photospacer{% endif %}" id='{{item.title}}'>
+                <div class="flexContent fullSize">
+                    {% if loop.index == 1 %}
+                    <div class="imagewrapper">
+                        <img class="lazyload" src="{{item._name|replace('600*450','1200*800')}}" alt="">
+                    </div>
+
+                    {% else  %}
+                    <div class="imagewrapper">
+                        <img class="lazyload" src="#" alt="" data-src="{{item._name|replace('600*450','1200*800')}}">
+                    </div>
+                    {% endif %}
+
+                    <div class="textwrapper">
+                        <div class="caption">
+                            {{item.caption}}
+                            {% if item.related_link %}
+                                <a href="{{item.related_link}}">Read related coverage
+                                    <i class="fa fa-angle-right" aria-hidden="true">&zwj;</i>
+                                </a>
+
+                            {% endif %}
+                        </div>
+                        <div class="credit">
+                            {{item.photoCredit}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {% if item.photo_context %}
+                <div class="flexRow photospacer">
+                    <div class="flexSpacer"></div>
+                    <div class="flexContent">
+                        <div class="photoDescription">
+                            {# <div class="lens">
+                                    Behind the lens:
+                                </div> #}
+                            {{item.photo_context|safe}}
+                        </div>
+                    </div>
+                    <div class="flexSpacer"></div>
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{# {% include "partials/recirc-box.html" %} #}
+<!--removeIf(production)-->
+<script src="http://www.philly.com/includes/e32121b31e345f561b84372c2bf06282/jquery-2.0.0b2.js" type="text/javascript"></script>
+<!--endRemoveIf(production)-->
+{% include "partials/script-links.html" %}
+{% block jsfile %}{% endblock %}
+{% include "partials/shell/footer.html" %}
