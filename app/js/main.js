@@ -6,7 +6,8 @@ var Modernizr = require('./modernizr');
 var data = require("./../../data/gallerydata.json")
 
 
-// link to gallery: https://www.philly.com/templates/photoGalleryXML?galleryid=470412183
+// link to gallery: https://www.philly.com/templates/photoGalleryXML?galleryid=473349183
+// link to xml --> json website: http://convertjson.com/xml-to-json.htm
 
 var monthNames = [
     "January", "February", "March",
